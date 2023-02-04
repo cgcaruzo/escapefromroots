@@ -1,0 +1,8 @@
+- [P] Que el personaje se agache
+- [P] Que el daño afecte a la vida del personaje
+- [J] Condición de Victoria: X minutos corriendo sin perder
+- [P] Animaciones: Correr, saltar, agacharse
+- [J] Escena de títulos. Que cuando apriete un botón pase a la principal
+- Efecto final: Se va acercando a una luz a medida que llega al final
+- Powerupp: Escudo
+- Que la pantalla se mueva
