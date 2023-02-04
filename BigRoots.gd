@@ -12,7 +12,13 @@ func _ready():
 
 
 func _physics_process(delta):
-	position.x += run_speed *delta
+	var screen_width = OS.window_size.x
+	var percentage = 1
+	if position.x != 0:
+		percentage = (position.x / screen_width) * 100 
+	print ("PER", percentage, " ", position.x, " ", screen_width)
+	if percentage < 15:
+		position.x += run_speed *delta
 
 
 func _on_BigRoots_body_entered(body):
