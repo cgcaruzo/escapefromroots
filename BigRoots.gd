@@ -16,7 +16,6 @@ func _physics_process(delta):
 	var percentage = 1
 	if position.x != 0:
 		percentage = (position.x / screen_width) * 100 
-	print ("PER", percentage, " ", position.x, " ", screen_width)
 	if percentage < 15:
 		position.x += run_speed *delta
 

@@ -18,6 +18,9 @@ func get_input():
 	if jump and is_on_floor():
 		jumping = true
 		velocity.y = jump_speed
+		var sound = get_node("jump")
+		
+		sound.play()
 
 func _physics_process(delta):
 	get_input()
@@ -37,11 +40,15 @@ func _on_Obstacle_body_entered(body):
 		obstacle.collided = true
 		velocity.x = -2000
 		velocity = move_and_slide(velocity, Vector2(0, -1))
+		var sound = get_node("hit1")
+		sound.play()
 		if hp == 0:
 			game_over()
 			pass
 
 func game_over():
+	var sound = get_node("dead")
+	sound.play()
 	get_tree().change_scene("res://title.tscn")
 	
 
