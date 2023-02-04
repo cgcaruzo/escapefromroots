@@ -15,6 +15,6 @@ func _process(delta):
 	# Reiniciar la posición si se sale de la pantalla
 	if position.x < -40:
 		position.x = 1100
-		position.y = 475 
+		position.y = 475
  
 
