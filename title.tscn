@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Title" type="Node"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 178.0
+margin_top = 78.0
+margin_right = 296.0
+margin_bottom = 92.0
+rect_scale = Vector2( 3.52, 2.76 )
+text = "Escape from Roots"
