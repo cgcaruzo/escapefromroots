@@ -6,6 +6,7 @@ export (int) var gravity = 1200
 
 var velocity = Vector2()
 var jumping = false
+var hp = 3
 
 func get_input():
 	velocity.x = 0
@@ -21,3 +22,10 @@ func _physics_process(delta):
 	if jumping and is_on_floor():
 		jumping = false
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+
+func on_loseHp():
+	hp -= 1
+
+func _on_Obstacle_body_entered(body):
+	if (body.get_name() == 'Player'):
+		on_loseHp()
