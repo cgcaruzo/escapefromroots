@@ -39,7 +39,8 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
 func on_loseHp():
-	hp -= 1
+#	hp -= 1
+	pass
 
 func _on_Obstacle_body_entered(body):
 	var obstacle = get_parent().get_node("Obstacle")
