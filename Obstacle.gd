@@ -21,7 +21,7 @@ func _process(delta):
 		if randomPosition == 0:
 			position.y = 475
 		else:
-			position.y = 100	
+			position.y = 200	
 		position.x = 1100
 		collided = false
  

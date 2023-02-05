@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/10_Sky.png-f4976e44195dead2fc31e762efa2db48.stex"
+path="res://.import/BackgroundGreen01.PNG-1de1f61ca741f92bff39f7485bbb530f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Backgrounds/10_Sky.png"
-dest_files=[ "res://.import/10_Sky.png-f4976e44195dead2fc31e762efa2db48.stex" ]
+source_file="res://Backgrounds/BackgroundGreen01.PNG"
+dest_files=[ "res://.import/BackgroundGreen01.PNG-1de1f61ca741f92bff39f7485bbb530f.stex" ]
 
 [params]
 

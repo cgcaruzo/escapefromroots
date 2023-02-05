@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/05_Particles.png-a6d0627d76aef8784023f8aa3a2a285a.stex"
+path="res://.import/BackgroundGreen00.PNG-2b1064aef9d1c6845695818efdb09b1a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Backgrounds/05_Particles.png"
-dest_files=[ "res://.import/05_Particles.png-a6d0627d76aef8784023f8aa3a2a285a.stex" ]
+source_file="res://Backgrounds/BackgroundGreen00.PNG"
+dest_files=[ "res://.import/BackgroundGreen00.PNG-2b1064aef9d1c6845695818efdb09b1a.stex" ]
 
 [params]
 

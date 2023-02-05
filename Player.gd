@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var run_speed = 5
-export (int) var jump_speed = -900
+export (int) var jump_speed = -700
 export (int) var gravity = 1200
 
 var velocity = Vector2()
@@ -13,11 +13,12 @@ func _ready():
 
 func get_input():
 	velocity.x = 0
-	var jump = Input.is_action_just_pressed('ui_select')
+	var jump = Input.is_action_just_pressed('ui_up')
 
 	if jump and is_on_floor():
 		jumping = true
 		velocity.y = jump_speed
+		$AnimationPlayer.play("jump")
 
 func _physics_process(delta):
 	get_input()

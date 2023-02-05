@@ -14,10 +14,6 @@ config/name="Escape from Roots"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
-[display]
-
-window/size/width=768
-
 [global]
 
 git=false
