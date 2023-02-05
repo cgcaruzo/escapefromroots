@@ -308,6 +308,7 @@ position = Vector2( 258, 292 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 run_speed = 6
+hp = 3
 
 [node name="Sprite" type="Sprite" parent="Player"]
 material = SubResource( 15 )
