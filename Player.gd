@@ -3,10 +3,12 @@ extends KinematicBody2D
 export (int) var run_speed = 5
 export (int) var jump_speed = -700
 export (int) var gravity = 1200
+export (int) var hp = 2
 
 var velocity = Vector2()
 var jumping = false
-var hp = 2
+var crouching = false
+
 
 func _ready():
 	randomize()
@@ -14,14 +16,19 @@ func _ready():
 func get_input():
 	velocity.x = 0
 	var jump = Input.is_action_just_pressed('ui_up')
+	var crouch = Input.is_action_just_pressed('ui_down')
 
-	if jump and is_on_floor():
+	if jump and is_on_floor() and !crouching:
 		jumping = true
 		velocity.y = jump_speed
 		$AnimationPlayer.play("jump")
 		var sound = get_node("jump")
 		
 		sound.play()
+	
+	if crouch and !jumping:
+		crouching = true
+		$AnimationPlayer.play("crouch")
 
 func _physics_process(delta):
 	get_input()
@@ -57,3 +64,13 @@ func _on_BigRoots_body_entered(body):
 	if (body.get_name() == 'Player'):
 		print("YOU LOSE")
 		get_tree().change_scene("res://title.tscn")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "jump":
+		$AnimationPlayer.play("run")
+	
+	if anim_name == "crouch":
+		crouching = false
+		$AnimationPlayer.play("run")
+

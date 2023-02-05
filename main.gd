@@ -12,7 +12,8 @@ func _ready():
 	$WinTimer.start()
 
 func _process(delta):
-	print($WinTimer.time_left)
+#	print($WinTimer.time_left)
+	pass
 
 func _on_WinTimer_timeout():
 	win()

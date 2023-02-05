@@ -11,5 +11,5 @@ dest_files=[ "res://.import/BackgroundSound.mp3-38d8c9eab3b7ad07ac7a8dd3ce15c861
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

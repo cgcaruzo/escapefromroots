@@ -16,12 +16,12 @@ func _process(delta):
 	# Reiniciar la posición si se sale de la pantalla
 	if position.x < -40:
 		var randomPosition = randi() % 2
-		print(randomPosition)
-	
+#		print(randomPosition)
 		if randomPosition == 0:
-			position.y = 475
+			position.y = $Spawners/BottomSpawner.global_position.y
 		else:
-			position.y = 200	
+			position.y = $Spawners/TopSpawner.global_position.y	
+		print(position.y)
 		position.x = 1100
 		collided = false
  
