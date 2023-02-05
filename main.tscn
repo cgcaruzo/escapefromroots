@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Backgrounds/BackgroundGreen02.PNG" type="Texture" id=2]
@@ -16,6 +16,12 @@
 [ext_resource path="res://sounds/jump.mp3" type="AudioStream" id=14]
 [ext_resource path="res://sounds/Muerte.mp3" type="AudioStream" id=15]
 [ext_resource path="res://Sprites/light.png" type="Texture" id=16]
+[ext_resource path="res://Shaders/offsetshadow.shader" type="Shader" id=17]
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 17 )
+shader_param/offset = Vector2( -8, 3 )
+shader_param/modulate = Color( 0, 0, 0, 0.67451 )
 
 [sub_resource type="CapsuleShape2D" id=11]
 radius = 27.0
@@ -231,8 +237,44 @@ tracks/4/keys = {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 31.5, 32 )
 
+[sub_resource type="ShaderMaterial" id=16]
+shader = ExtResource( 17 )
+shader_param/offset = Vector2( -8, 3 )
+shader_param/modulate = Color( 0, 0, 0, 0.67451 )
+
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 30, 30 )
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2.5, 2.5 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "main"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 2.3, 2.3 ), Vector2( 2, 2 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 202, 204 )
@@ -901,11 +943,12 @@ visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 342, 373 )
+position = Vector2( 258, 292 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
+material = SubResource( 15 )
 texture = ExtResource( 7 )
 region_enabled = true
 region_rect = Rect2( 58, 148, 68, 91 )
@@ -932,17 +975,15 @@ pause_mode = 2
 stream = ExtResource( 15 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
-visible = false
-position = Vector2( 15, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 16 )
 texture_scale = 0.7
-color = Color( 1, 0.890196, 0.827451, 1 )
+color = Color( 0.976471, 0.713726, 0.564706, 1 )
 range_layer_min = -200
 range_layer_max = 4
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2( 462, 529 )
+position = Vector2( 449, 473 )
 scale = Vector2( 17.32, 1 )
 
 [node name="Sprite" type="Sprite" parent="Floor"]
@@ -993,33 +1034,65 @@ visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="Obstacle" type="Area2D" parent="."]
-position = Vector2( 950, 475 )
+position = Vector2( 968, 359 )
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Obstacle"]
+material = SubResource( 16 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
+region_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
 shape = SubResource( 6 )
 
+[node name="Sprites" type="Node2D" parent="Obstacle"]
+visible = false
+scale = Vector2( 2, 2 )
+
+[node name="Sprite01" type="Sprite" parent="Obstacle/Sprites"]
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 295, 414, 96, 50 )
+
+[node name="Sprite02" type="Sprite" parent="Obstacle/Sprites"]
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 420, 413, 101, 54 )
+
+[node name="Sprite03" type="Sprite" parent="Obstacle/Sprites"]
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 557, 421, 83, 46 )
+
+[node name="Sprite04" type="Sprite" parent="Obstacle/Sprites"]
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 673, 419, 87, 48 )
+
 [node name="Spawners" type="Node" parent="Obstacle"]
 
 [node name="TopSpawner" type="Position2D" parent="Obstacle/Spawners"]
-position = Vector2( 868, 257 )
+position = Vector2( 817, 207 )
 
 [node name="BottomSpawner" type="Position2D" parent="Obstacle/Spawners"]
-position = Vector2( 865, 438 )
+position = Vector2( 822, 408 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacle"]
+autoplay = "main"
+anims/RESET = SubResource( 13 )
+anims/main = SubResource( 14 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 686.0
-margin_top = 27.0
-margin_right = 726.0
-margin_bottom = 41.0
+margin_left = 301.0
+margin_top = 95.0
+margin_right = 341.0
+margin_bottom = 109.0
 text = "HP:"
 script = ExtResource( 11 )
 
 [node name="BigRoots" type="Area2D" parent="."]
-position = Vector2( 108, 273 )
+position = Vector2( 136, 229 )
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigRoots"]
