@@ -39,8 +39,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
 func on_loseHp():
-#	hp -= 1
-	pass
+	hp -= 1
 
 func _on_Obstacle_body_entered(body):
 	var obstacle = get_parent().get_node("Obstacle")
@@ -58,13 +57,13 @@ func _on_Obstacle_body_entered(body):
 func game_over():
 	var sound = get_node("dead")
 	sound.play()
-	get_tree().change_scene("res://title.tscn")
+	get_tree().change_scene("res://defeat.tscn")
 	
 
 func _on_BigRoots_body_entered(body):
 	if (body.get_name() == 'Player'):
 		print("YOU LOSE")
-		get_tree().change_scene("res://title.tscn")
+		get_tree().change_scene("res://defeat.tscn")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

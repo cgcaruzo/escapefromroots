@@ -1,6 +1,6 @@
 extends Area2D
 
-export (int) var run_speed = 5
+export (int) var run_speed = 0
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -12,15 +12,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	var screen_width = OS.window_size.x
-	var percentage = 1
-	if position.x != 0:
-		percentage = (position.x / screen_width) * 100 
-	if percentage < 15:
-		position.x += run_speed *delta
+	position.x += run_speed *delta
 
 
 func _on_BigRoots_body_entered(body):
-	if (body.get_name() == 'Player'):
-		print("You loose")
-		get_tree().paused = 1
+	pass

@@ -1,6 +1,44 @@
-[gd_scene format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Backgrounds/StartPageGameBckground.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/StartPageGameTitle.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/StartPageGameStart.png" type="Texture" id=3]
+[ext_resource path="res://title.gd" type="Script" id=4]
+[ext_resource path="res://sounds/BackgroundSound.mp3" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("StartPageGameStart:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("StartPageGameStart:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
 
 [node name="Title" type="Node"]
+script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 178.0
@@ -9,3 +47,32 @@ margin_right = 296.0
 margin_bottom = 92.0
 rect_scale = Vector2( 3.52, 2.76 )
 text = "Escape from Roots"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -270.0
+margin_top = -207.0
+margin_right = 3230.0
+margin_bottom = 2293.0
+rect_scale = Vector2( 0.400001, 0.400001 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="StartPageGameStart" type="Sprite" parent="."]
+position = Vector2( 470, 434 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1534, 1655, 433, 174 )
+
+[node name="StartPageGameTitle" type="Sprite" parent="."]
+position = Vector2( 478, 210 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "start"
+anims/RESET = SubResource( 1 )
+anims/start = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
